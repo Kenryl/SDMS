@@ -18,16 +18,19 @@ namespace StudentDocumentsManagementSystem
             string UsrName = Console.ReadLine();
             Console.Write("Password: ");
             string PsWord = Console.ReadLine();
+           
 
 
             if (UsrName == "admin" & PsWord == "admin")
             {
 
                 Console.WriteLine("||||You are logged in!||||");
+                Console.Clear();
 
-                for (var userInput = GetUserInputIndexValue();
+
+                for (var userInput = UserInputValue();
                               userInput != actions.IndexOf('X');
-                              userInput = GetUserInputIndexValue())
+                              userInput = UserInputValue())
                 {
 
                     if (userInput.Equals(actions.IndexOf('A')))
@@ -38,17 +41,22 @@ namespace StudentDocumentsManagementSystem
 
                         Console.WriteLine("Enter Student Name: ");
                         string studname = Console.ReadLine();
+                        Console.Clear();
 
                         if (studname == (studname1))
                         {
                             Console.WriteLine("Documents completed!");
+                            Console.WriteLine("\n");
+                           
                         }
                         else if (studname == (studname2))
                         {
                             Console.WriteLine("Documents incomplete!");
+                           
                         }
                         else
                             Console.WriteLine("Invalid!");
+                        
 
                     }
                     else if (userInput.Equals(actions.IndexOf('B')))
@@ -76,11 +84,7 @@ namespace StudentDocumentsManagementSystem
 
         public static List<string> logs = new List<string>();
         public static List<string> actionsDescription = new List<string>()
-                        { "'A' Admission Requirements",
-                          "'B' Clearance",
-                          "'C' Transcript of Record",
-                          "'X' EXIT"};
-
+                        { "'A' Admission Requirements","'B' Clearance","'C' Transcript of Record","'X' EXIT"};
         public static List<char> actions = new List<char>() { 'A', 'B', 'C', 'X' };
         static void ShowUserOptions()
         {
@@ -91,12 +95,14 @@ namespace StudentDocumentsManagementSystem
             }
         }
 
-        static int GetUserInputIndexValue()
+        static int UserInputValue()
         {
             ShowUserOptions();
+            
             Console.Write("Enter Here: ");
             var action = (Convert.ToChar(Console.ReadLine().ToUpper()));
             var actionIndex = actions.IndexOf(action);
+            Console.Clear();
 
             if (actionIndex != -1)
             {
@@ -105,10 +111,11 @@ namespace StudentDocumentsManagementSystem
             }
             else
             {
-                var message = "INVALID INPUT. Please try again.";
+                var message = "INVALID INPUT! Please try again.......";
                 Console.WriteLine(message);
+                Console.Clear();
 
-                return GetUserInputIndexValue();
+                return UserInputValue();
             }
         }
 
